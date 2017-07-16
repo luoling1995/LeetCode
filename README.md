@@ -1,0 +1,2 @@
+# LintCode
+LintCode题目
