@@ -22,3 +22,4 @@ public class Solution {
         return -1;
     }
 }
+在一个排序数组中找一个数，返回该数出现的任意位置，如果不存在，返回-1
