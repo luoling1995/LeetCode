@@ -1,0 +1,48 @@
+public class Solution {
+    /**
+     * @param nums a list of n integers
+     * @return true if there is a 132 pattern or false
+     */
+    public boolean find132pattern(int[] nums) {
+        // Write your code here
+        //解法一：时间复杂度为O(n^3)
+        // for(int i = 0;i < nums.length;i++){
+        //     for(int j = i + 1;j < nums.length;j++){
+        //         for(int k = j + 1;k < nums.length;k++){
+        //             if(nums[j] > nums[k] && nums[i] < nums[k]){
+        //                 return true;
+        //             }
+        //         }
+        //     }
+        // }
+        // return false;
+        
+        //解法二：时间复杂度为：O(n^2)
+        // for(int i = 0,min = Integer.MAX_VALUE;i < nums.length;i++){
+        //     min = Math.min(nums[i],min);
+        //     for(int j = i + 1;j < nums.length;j++){
+        //         if(min < nums[j] && nums[i] > nums[j]){
+        //             return true;
+        //         }
+        //     }
+        // }
+        // return false;
+        
+        //解法三：时间复杂度为：O(n)
+        int third = Integer.MIN_VALUE;
+        Stack<int> s = new Stack<int>();
+        for (int i = nums.length - 1; i >= 0; --i) {
+            if (nums[i] < third){
+                return true;
+            }
+            else {
+                while (!s.empty() && nums[i] > s.peek()) {
+                    third = s.top();
+                    s.pop();
+                }
+            }
+            s.push(nums[i]);
+        }
+        return false;
+    }
+}
