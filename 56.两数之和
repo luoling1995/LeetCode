@@ -1,0 +1,37 @@
+给一个整数数组，找到两个数使得他们的和等于一个给定的数 target。
+你需要实现的函数twoSum需要返回这两个数的下标, 并且第一个下标小于第二个下标。注意这里下标的范围是 1 到 n，不是以 0 开头。
+给出 numbers = [2, 7, 11, 15], target = 9, 返回 [1, 2].
+
+public class Solution {
+    /*
+     * @param numbers : An array of Integer
+     * @param target : target = numbers[index1] + numbers[index2]
+     * @return : [index1 + 1, index2 + 1] (index1 < index2)
+     */
+    private int[] a = new int[2];
+    public int[] twoSum(int[] numbers, int target) {
+        // write your code here
+        //解法一：时间复杂度为O(n)
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for (int i = 0; i < numbers.length; i++) {
+            map.put(numbers[i], i);
+        }
+        for (int i = 0; i < numbers.length; i++) {
+            int complement = target - numbers[i];
+            if (map.containsKey(complement) && map.get(complement) != i) {
+                return new int[] { i + 1, map.get(complement) + 1 };
+            }
+        }
+        return null;
+        //解法二：时间复杂度为：O(n^2)
+        // for(int i = 0;i < numbers.length;i++){
+        //     for(int j = i + 1;j < numbers.length;j++){
+        //         if(numbers[i] + numbers[j] == target){
+        //             a[0] = ++i;
+        //             a[1] = ++j;
+        //         }
+        //     }
+        // }
+        // return a;
+    }
+}
