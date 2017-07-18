@@ -1,0 +1,32 @@
+给定一个字符串，逐个翻转字符串中的每个单词。
+public class Solution {
+    /**
+     * @param s : A string
+     * @return : A string
+     */
+    public String reverseWords(String s) {
+        // write your code
+       //此方法为逐个翻转字符串中的每个单词并且翻转单词中的字母
+//         String regex = "\\s+";
+//         s = s.trim();
+//         String s1 = s.replaceAll(regex, " ");
+//         
+//         char[] c = new char[s1.length()];
+//         for(int i = 0;i < s1.length();i++){
+//             c[i] = s1.charAt(s1.length() - 1 - i);
+//         }
+//         return String.valueOf(c);
+    	StringBuilder buff = new StringBuilder();
+    	String regex = "\\s+";
+        s = s.trim();
+        String s1 = s.replaceAll(regex, " ");
+        String[] str = s1.split(" ");
+        for(int i = 0;i < str.length;i++){
+            buff.append(str[str.length - i - 1]);
+            if(i < str.length -1){
+                buff.append(" ");
+            }
+        }
+    	return buff.toString();	
+    }
+}
