@@ -1,0 +1,74 @@
+/**
+ * 思路是用归并排序
+ * Definition for ListNode.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int val) {
+ *         this.val = val;
+ *         this.next = null;
+ *     }
+ * }
+ */
+
+public class Solution {
+    /*
+     * @param head: The head of linked list.
+     * @return: You should return the head of the sorted linked list, using constant space complexity.
+     */
+    public ListNode sortList(ListNode head) {
+        // write your code here
+        if(head==null ||head.next==null)    return head;
+        // 定义一个快指针和一个，慢指针，快指针走两次，慢指针走一次
+        ListNode fast,slow;
+        fast = head.next;
+        slow = head;
+        while(fast != null && fast.next != null){
+            fast = fast.next;
+            slow = slow.next;
+            if(fast.next != null){
+                fast = fast.next;
+            }
+        }
+        // slow就是中间节点
+        ListNode mid1 = slow.next;
+        // 把链表从中间断开
+        slow.next = null;
+        // 递归
+        ListNode temp1 = sortList(head);
+        ListNode temp2 = sortList(mid1);
+        // 排序
+        return merge(temp1,temp2);
+    }
+    
+    public ListNode merge(ListNode left,ListNode right){
+        // 定义一个链表用来保存排序后的值
+        ListNode head = new ListNode(0);
+        ListNode pre = head;
+        // 当左边链表和右边链表不为空时，把节点从小到大放入head中
+        while(left != null && right != null){
+            if(left.val <= right.val){
+                pre.next = left;
+                pre = left;
+                left = left.next;
+            }else{
+                pre.next = right;
+                pre = right;
+                right = right.next;
+            }
+        }
+        // 当右边遍历完的时候，直接把左边全部链表加入head中
+        while(left != null){
+            pre.next = left;
+            pre = left;
+            left = left.next;
+        }
+        // 当左边遍历完的时候，直接把右边全部链表加入head中
+        while(right != null){
+            pre.next = right;
+            pre = right;
+            right = right.next;
+        }
+        return head.next;
+    }
+}
