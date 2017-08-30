@@ -1,0 +1,35 @@
+实现一个带有取最小值min方法的栈，min方法将返回当前栈中的最小值。
+如下操作：push(1)，pop()，push(2)，push(3)，min()， push(1)，min() 返回 1，2，1
+思路：让栈里每个元素的值都为（插入的数-最小值）的相对值，如果是负数，则min=出入的数，当pop的时候，如果pop的是负数，则最小值变为min-top();
+
+public class MinStack {
+    int min = 0;
+    Stack<Integer> stack = new Stack<Integer>();
+
+    public void push(int number) {
+        if(stack.isEmpty()){
+            stack.push(0);
+            min = number;
+        }else{
+            stack.push(number - min);
+            if(number < min){
+                min = number;
+            }
+        }
+    }
+
+    public int pop() {
+        int top = stack.pop();
+        int flag = min;
+        if(top < 0){
+            min = min - top;
+            return flag;
+        }else{
+            return flag + top;
+        }
+    }
+
+    public int min() {
+        return min;
+    }
+}
