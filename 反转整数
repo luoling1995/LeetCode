@@ -1,0 +1,41 @@
+将一个整数中的数字进行颠倒，当颠倒后的整数溢出时，返回 0 (标记为 32 位整数)。
+
+public class Solution {
+    /**
+     * @param n the integer to be reversed
+     * @return the reversed integer
+     */
+    public int reverseInteger(int n) {
+        //Write your code here
+        long n1 = 0L;
+        boolean flag = false;
+        String str = String.valueOf(n);
+        //判断是否是负数
+        if(str.startsWith("-")){
+            str = str.split("-")[1];
+            flag = true;
+        }
+        char[] c = str.toCharArray();
+        char temp;
+        //此处反转整数
+        for(int i = 0;i < c.length / 2;i++){
+            temp = c[i];
+            c[i] = c[c.length - 1 - i];
+            c[c.length - 1 - i] = temp;
+        }
+        str = String.valueOf(c);
+        if(str.startsWith("0") && str.length() > 1){
+            str = str.replaceAll("^0*","");
+        }
+        n1 = Long.decode(str);
+        //如果是负数，这添加负号
+        if(flag){
+            n1 = (-n1);
+        }
+        //判断是否溢出
+        if(n1 < Integer.MIN_VALUE || n1 > Integer.MAX_VALUE){
+            return 0;
+        }
+        return (int)n1;
+    }
+}
