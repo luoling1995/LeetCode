@@ -1,0 +1,54 @@
+给出数组 [9,3,2,4,8]，第三大的元素是 4
+给出数组 [1,2,3,4,5]，第一大的元素是 5，第二大的元素是 4，第三大的元素是 3，以此类推
+
+思路：两种方式：第一种，直接调用系统库函数sort排序，然后return即可
+第二种：利用快速排序的思想，比K大的元素在k的右边，比K小的元素在K的左边，递归找出k即可
+
+class Solution {
+    /*
+     * @param k : description of k
+     * @param nums : array of nums
+     * @return: description of return
+     */
+    public int kthLargestElement(int k, int[] nums) {
+        // write your code here
+        Arrays.sort(nums);
+        return nums[nums.length - k];
+        // return sort(nums,0,nums.length - 1,k);
+    }
+    
+    // public int sort(int[] a,int lo,int hi,int k){
+    //     int j = partition(a,lo,hi);
+    //     if(k == a.length - j)
+    //         return a[j];
+    //     else if(k < a.length - j){
+    //         return sort(a,j + 1,hi,k);
+    //     }else{
+    //         return sort(a,lo,j - 1,k);
+    //     }
+    // }
+    
+    // public int partition(int[] a,int lo,int hi){
+    //     int i = lo,j = hi + 1;
+    //     int v = a[lo];
+    //     int temp = 0;
+    //     while(true){
+    //         while(a[++i] < v){
+    //             if(i == hi)
+    //                 break;
+    //         }
+    //         while(a[--j] > v){
+                
+    //         }
+    //         if(i >= j)
+    //             break;
+    //         temp = a[i];
+    //         a[i] = a[j];
+    //         a[j] = temp;
+    //     }
+    //     temp = a[lo];
+    //     a[lo] = a[j];
+    //     a[j] = temp;
+    //     return j;
+    // }
+};
