@@ -1,0 +1,16 @@
+给定一个二叉树，找出其最大深度。
+
+public class Solution {
+    private int count = 0;
+    /**
+     * @param root: The root of binary tree.
+     * @return: An integer.
+     */
+    public int maxDepth(TreeNode root) {
+        // write your code here
+        if (root == null) return 0;  
+        int lh = maxDepth(root.left);  
+        int rh = maxDepth(root.right);  
+        return lh > rh ? lh + 1 : rh + 1;
+    }
+}
