@@ -1,0 +1,43 @@
+给出一个有n个整数的数组S，在S中找到三个整数a, b, c，找到所有使得a + b + c = 0的三元组。
+如S = {-1 0 1 2 -1 -4}, 你需要返回的三元组集合的是：
+(-1, 0, 1)
+(-1, -1, 2)
+
+思路：利用numbers[i] = numbers[j] + numbers[k];来减少时间复杂度
+
+public class Solution {
+    /**
+     * @param numbers : Give an array numbers of n integer
+     * @return : Find all unique triplets in the array which gives the sum of zero.
+     */
+    public ArrayList<ArrayList<Integer>> threeSum(int[] numbers) {
+        // write your code here
+        Arrays.sort(numbers);
+        ArrayList<ArrayList<Integer>> arrayList = new ArrayList<>();
+        for(int i = 0;i < numbers.length - 2;i++){
+            if(i == 0 || (i > 0 && numbers[i] != numbers[i - 1])){
+                int lo = i + 1;
+                int hi = numbers.length - 1;
+                int sum = 0 - numbers[i];
+                while(lo < hi){
+                    if(numbers[lo] + numbers[hi] == sum){
+                        ArrayList<Integer> list = new ArrayList<>();
+                        list.add(numbers[i]);
+                        list.add(numbers[lo]);
+                        list.add(numbers[hi]);
+                        arrayList.add(list);
+                        while(lo < hi && numbers[lo] == numbers[lo + 1]) lo++;
+                        while(lo < hi && numbers[hi] == numbers[hi - 1]) hi--;
+                        hi--;
+                        lo++;
+                    }else if(numbers[lo] + numbers[hi] > sum){
+                        hi--;
+                    }else{
+                        lo++;
+                    }
+                }
+            }
+        }
+        return arrayList;
+    }
+}
