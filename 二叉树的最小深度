@@ -1,0 +1,17 @@
+给定一个二叉树，找出其最小深度。
+
+public class Solution {
+    /**
+     * @param root: The root of binary tree.
+     * @return: An integer.
+     */
+    public int minDepth(TreeNode root) {
+        // write your code here
+        if(root == null) return 0;
+        int lh = minDepth(root.left);
+        int rh = minDepth(root.right);
+        if (lh==0) return rh + 1;  
+        if (rh==0) return lh + 1;  
+        return lh < rh ? lh+1:rh+1;
+    }
+}
