@@ -18,16 +18,6 @@ class Solution {
     }
     
     public int sort(int[] a,int lo,int hi,int k){
-        // int j = partition(a,lo,hi);
-        // if(k == a.length - j)
-        //     return a[j];
-        // else if(k < a.length - j){
-        //     return sort(a,j + 1,hi,k);
-        // }else{
-        //     return sort(a,lo,j - 1,k);
-        // }
-        
-        //非递归方式
         while(lo < hi){
             int j = partition(a,lo,hi);
             if(j == k) return a[k];
