@@ -1,0 +1,29 @@
+
+
+比如n=3，1+1+1=1+2=2+1=3，共有3种不同的方法
+返回 3
+
+public class Solution {
+    /**
+     * @param n: An integer
+     * @return: An integer
+     */
+    public int climbStairs(int n) {
+        // write your code here
+        
+        //使用递归超时，改用循环
+        // if(n == 1) return 1;
+        // if(n == 2) return 2;
+        // return climbStairs(n-1) + climbStairs(n-2);
+        
+        if(n == 0 || n == 1)
+            return n;
+        int[] a = new int[n + 1];
+        a[1] = 1;
+        a[2] = 2;
+        for(int i = 3;i < n + 1;i++){
+            a[i] = a[i - 1] + a[i - 2];
+        }
+        return a[n];
+    }
+}
