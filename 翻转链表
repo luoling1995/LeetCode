@@ -1,0 +1,41 @@
+思路，先找出尾指针，然后尾指针不动，把first放到last上，知道last=first为止。
+
+/**
+ * Definition for ListNode.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int val) {
+ *         this.val = val;
+ *         this.next = null;
+ *     }
+ * }
+ */
+
+
+public class Solution {
+    /*
+     * @param head: n
+     * @return: The new head of reversed linked list.
+     */
+    public ListNode reverse(ListNode head) {
+        ListNode last,temp;
+        temp = head;
+        last = null;
+        while(temp != null){
+            if(temp.next == null){
+                last = temp;
+                break;
+            }
+            temp = temp.next;
+        }
+        
+        while(head != last){
+            temp = head;
+            head = head.next;
+            temp.next = last.next;
+            last.next = temp;
+        }
+        return last;
+    }
+}
