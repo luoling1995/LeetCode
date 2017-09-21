@@ -1,0 +1,43 @@
+
+
+
+11, 121, 1, 12321 这些是回文数。
+23, 32, 1232 这些不是回文数。
+
+public class Solution {
+    /*
+     * @param num: a positive number
+     * @return: true if it's a palindrome or false
+     */
+    public boolean isPalindrome(int num) {
+        // write your code here
+        
+        String s = "" + num;
+        char[] c = new char[s.length() / 2];
+        
+        for(int i = 0;i < s.length() / 2;i++){
+            c[i] = s.charAt(s.length() - i - 1);
+        }
+        
+        String s1 = new String(c);
+        
+        if(s1.equals(s.substring(0,s.length() / 2)))
+            return true;
+        else
+            return false;
+            
+        // String s = "" + num;
+        // char[] c = new char[s.length()];
+        
+        // for(int i = 0;i < s.length();i++){
+        //     c[i] = s.charAt(s.length() - i - 1);
+        // }
+        
+        // s = new String(c);
+        
+        // if(num == Long.valueOf(s))
+        //     return true;
+        // else
+        //     return false;
+    }
+}
