@@ -1,0 +1,33 @@
+给定 [1,2,3] 表示 123, 返回 [1,2,4].
+给定 [9,9,9] 表示 999, 返回 [1,0,0,0].
+
+
+public class Solution {
+    /*
+     * @param digits: a number represented as an array of digits
+     * @return: the result
+     */
+    public int[] plusOne(int[] digits) {
+        // write your code here
+        int N = digits.length;
+        int count = 1;
+        
+        for(int i = N - 1;i >= 0;i--){
+            if(digits[i] == 9 && i != 0){
+                digits[i] = 0;
+                continue;
+            }
+            if(i == 0 && digits[i] == 9){
+                int[] nums = new int[N + 1];
+                nums[0] = 1;
+                for(int j = 1;j < N + 1;j++){
+                    nums[j] = 0;
+                }
+                return nums;
+            }
+            digits[i] += count; 
+            break;
+        }
+        return digits;
+    }
+}
