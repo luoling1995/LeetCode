@@ -1,0 +1,45 @@
+思路：用两个指针，一个fast，每次走两步，一个slow，每次走一步，如果fast==slow，那就说明有环，如果fast==null，说明没环
+
+/**
+ * Definition for ListNode.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int val) {
+ *         this.val = val;
+ *         this.next = null;
+ *     }
+ * }
+ */
+
+
+public class Solution {
+    /*
+     * @param head: The first node of linked list.
+     * @return: True if it has a cycle, or false
+     */
+    public boolean hasCycle(ListNode head) {
+        // write your code here
+        ListNode fast = head;
+        ListNode slow = head;
+        
+        if(head == null){
+            return false;
+        }
+        
+        while(true){
+            if(fast.next != null && fast.next.next != null){
+                fast = fast.next.next;
+            }else{
+                return false;
+            }
+            
+            slow = slow.next;
+            
+            if(fast == slow){
+                return true;
+            }
+        }
+
+    }
+}
